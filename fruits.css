@@ -1,0 +1,35 @@
+body{
+    background-size: cover;
+}
+
+.heading{
+    font-family: 'Send Flowers', cursive;
+    color: lightseagreen;
+    background-color: aliceblue;
+    font-size: 40px;
+    border-radius: 10px;
+    width: 95%;
+}
+
+.name{
+    font-family: 'Patrick Hand', cursive;
+    color: aquamarine;
+    background-color: aliceblue;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+#back_button{
+    float: right;
+    margin-right: 10px;
+}
+
+#status{
+    font-family: 'Patrick Hand', cursive;
+    color: aquamarine;
+    background-color: aliceblue;
+    font-size: 30px;
+    border-radius: 10px;
+    width: 40%;
+}
