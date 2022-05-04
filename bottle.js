@@ -1,5 +1,6 @@
 img = "";
 status = "";
+array = [];
 
 function preload(){
     img = loadImage("bottle.jpg");
@@ -23,13 +24,24 @@ function got_result(error, results){
         console.error(error);
     }
     console.log(results);
+    array = results;
 }
 
 function draw(){
-    image(img, 0,0, 640, 420);
-    fill("purple");
-    text("Bottle", 45, 75);
-    noFill();
-    stroke("purple");
-    rect(30, 60, 250, 350);
+    image(img, 0, 0, 640, 420);
+
+    if(status != ""){
+        
+        for(i=0; i<array.length; i++){
+            document.getElementById("status").innerHTML = "Status: Objects Detected";
+            document.getElementById("no_of_objects").innerHTML = "No. of objects detected are: " + array.length;
+
+            fill("#FF0000");
+            percent = floor(objects[i].confidence *100);
+            text(array[i].label+" "+ percent + "%", array[i].x + 15, array[i].y + 15);
+            noFill();
+            stroke("#FF0000");
+            rect(array[i].x, array[i].y, array[i].width, array[i].height);
+        }
+    }
 }

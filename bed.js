@@ -1,5 +1,6 @@
 img = "";
 status = "";
+array = [];
 
 function preload(){
     img = loadImage("bed.jpg");
@@ -15,7 +16,7 @@ function setup(){
 function model_loaded(){
     console.log("model_loaded");
     status = true;
-    object_detector.detect(img, got_result);
+    object_detector.detect(img, got_results);
 }
 
 function got_result(error, results){
@@ -23,13 +24,24 @@ function got_result(error, results){
         console.error(error);
     }
     console.log(results);
+    array = results;
 }
 
 function draw(){
-    image(img, 0,0, 640, 420);
-    fill("orange");
-    text("Bed", 45, 75);
-    noFill();
-    stroke("orange");
-    rect(30, 80, 570, 300);
+    image(img, 0, 0, 640, 420);
+
+    if(status != ""){
+        
+        for(i=0; i<array.length; i++){
+            document.getElementById("status").innerHTML = "Status: Objects Detected";
+            document.getElementById("no_of_objects").innerHTML = "No. of objects detected are: " + array.length;
+
+            fill("#FF0000");
+            percent = floor(objects[i].confidence *100);
+            text(array[i].label+" "+ percent + "%", array[i].x + 15, array[i].y + 15);
+            noFill();
+            stroke("#FF0000");
+            rect(array[i].x, array[i].y, array[i].width, array[i].height);
+        }
+    }
 }
